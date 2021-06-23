@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App</title>
+    <link rel="stylesheet" href="todoStyle.css">
+</head>
+<body>
+    <div ng-controller="todoController" class="container">
+        <h1 class="h1">To Do App</h1>
+        <div>
+            <form ng-submit="addTask()" name="form">
+                <div>
+                    <input type="text" class="input" name="taskInput" ng-model="task" placeholder="Enter Your Task Here" />
+                      <div class="line-box">
+                        <div class="line"></div>
+                      </div>
+                      <div class="clear"></div>
+                </div>
+                <span class="error" id="error">Please Enter Task.</span>
+                <div class="clear"></div>
+            </form>
+        </div>        
+        <br><br>
+        <div>
+            <span class="textStyle">{{remainingCount}} of {{tasks.length}} Remaining</span>
+            <button class="button_S1" ng-click="clearAll()">Clear All</button>
+            <button class="button_S1" ng-click="clearCompleted()">Clear Completed</button>
+        </div>
+        <br>
+
+        <div class="todoList">
+            <ul>
+                <li ng-repeat="task in tasks">
+                    <label class="chkbox">
+                        {{ task.title | capitalize }}
+                        <input type="checkbox" ng-model="task.status">
+                        <span class="checkmark"></span>
+                    </label>
+                    <button class="deleteBtn" ng-click="removeTask($index)"> X </button>
+                </li>
+            </ul>
+        </div>  
+
+        <!-- <ul class="todoList">
+            <li ng-repeat="task in tasks">{{ task.title | capitalize }} | {{task.status}}</li>
+        </ul> -->
+        
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="JS/todoApp.js"></script>
+    <script src="JS/todoController.js"></script>
+</body>
+</html>
